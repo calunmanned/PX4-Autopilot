@@ -117,6 +117,7 @@ px4_add_romfs_files(
 	71002_gz_spacecraft_2d
 
 	13010_supernal_vtol
+	4030_gz_fighter_vtol
 
 	# [22000, 22999] Reserve for custom models
 )
