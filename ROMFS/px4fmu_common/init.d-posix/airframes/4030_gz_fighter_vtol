@@ -27,22 +27,40 @@ param set-default CA_AIRFRAME 2 # standard_vtol
 param set-default COM_PREARM_MODE 2
 # Rotor config
 param set-default CA_ROTOR_COUNT 5
-param set-default CA_ROTOR0_PX 0.1515
-param set-default CA_ROTOR0_PY 0.245
-param set-default CA_ROTOR0_KM 0.05
-param set-default CA_ROTOR1_PX -0.1515
-param set-default CA_ROTOR1_PY -0.1875
-param set-default CA_ROTOR1_KM 0.05
-param set-default CA_ROTOR2_PX 0.1515
-param set-default CA_ROTOR2_PY -0.245
-param set-default CA_ROTOR2_KM -0.05
-param set-default CA_ROTOR3_PX -0.1515
-param set-default CA_ROTOR3_PY 0.1875
-param set-default CA_ROTOR3_KM -0.05
+# Front right motor with +z spin
+param set-default CA_ROTOR0_CT 100.0000
+param set-default CA_ROTOR0_KM 0.0250
+param set-default CA_ROTOR0_PX -0.4160
+param set-default CA_ROTOR0_PY 0.5040
+
+# Rear left motor with +z spin
+param set-default CA_ROTOR1_CT 100.0000
+param set-default CA_ROTOR1_KM 0.0250
+param set-default CA_ROTOR1_PX 0.4800
+param set-default CA_ROTOR1_PY -0.5000
+
+# Front left motor with -z spin
+param set-default CA_ROTOR2_CT 100.0000
+param set-default CA_ROTOR2_KM -0.0250
+param set-default CA_ROTOR2_PX -0.4200
+param set-default CA_ROTOR2_PY -0.5000
+
+# Rear right motor with -z spin
+param set-default CA_ROTOR3_CT 100.0000
+param set-default CA_ROTOR3_KM -0.0250
+param set-default CA_ROTOR3_PX 0.4800
+param set-default CA_ROTOR3_PY 0.5000
+
+# Pusher motor with +x spin
+param set-default CA_ROTOR4_CT 80.0000
+param set-default CA_ROTOR4_KM 0.0250
+param set-default CA_ROTOR4_PX 1.0260
+param set-default CA_ROTOR5_CT 6.5000
+param set-default CA_ROTOR5_KM 0.0500
 param set-default CA_ROTOR4_AX 1
 param set-default CA_ROTOR4_AY 0
 param set-default CA_ROTOR4_AZ 0
-param set-default CA_ROTOR4_PX 0.2
+
 # ESC parameters (for motors 1-4)
 param set-default SIM_GZ_EC_FUNC1 101
 param set-default SIM_GZ_EC_MIN1 10
@@ -76,9 +94,9 @@ param set-default CA_SV_CS0_TRQ_R -0.5
 param set-default CA_SV_CS1_TYPE 2 # right aileron, servo_1
 param set-default CA_SV_CS1_TRQ_R 0.5
 param set-default CA_SV_CS2_TYPE 3 # elevator, servo_2
-param set-default CA_SV_CS2_TRQ_P 1
+param set-default CA_SV_CS2_TRQ_P 0.5 # pitch contribution
 param set-default CA_SV_CS3_TYPE 3 # elevator, servo_3
-param set-default CA_SV_CS3_TRQ_P 1
+param set-default CA_SV_CS3_TRQ_P 0.5 # pitch contribution
 param set-default CA_SV_CS4_TYPE 4 # rudder, servo_4
 param set-default CA_SV_CS4_TRQ_Y 0.5
 # FW controller parameters
@@ -115,3 +133,19 @@ param set-default VT_PITCH_MIN -5
 param set-default VT_F_TRANS_THR 1
 param set-default VT_TYPE 2
 param set-default FD_ESCS_EN 0
+
+# Battery
+param set-default BAT1_N_CELLS 12
+
+# Speed
+param set-default FW_AIRSPD_MAX 24.0000
+param set-default FW_AIRSPD_MIN 13.0000
+param set-default FW_AIRSPD_STALL 10.0000
+param set-default FW_AIRSPD_TRIM 18.0000
+param set-default FW_SERVICE_CEIL 3000.0000
+param set-default VT_ARSP_TRANS 13.0000
+param set-default VT_TRANS_TIMEOUT 20.0000
+
+# Weight
+param set-default WEIGHT_BASE 11.5000
+param set-default WEIGHT_GROSS 11.5000
