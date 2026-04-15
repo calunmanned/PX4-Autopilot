@@ -11,7 +11,7 @@
 
 PX4_SIMULATOR=${PX4_SIMULATOR:=gz}
 PX4_GZ_WORLD=${PX4_GZ_WORLD:=default}
-PX4_SIM_MODEL=${PX4_SIM_MODEL:=standard_vtol}
+PX4_SIM_MODEL=${PX4_SIM_MODEL:=fighter_vtol}
 
 param set-default SIM_GZ_EN 1
 
@@ -39,36 +39,34 @@ param set-default CA_ROTOR_COUNT 5
 # But this could be dangerous for HIL test as it doesn't follow the standard convention
 # TODO: we need to fixed the CAD, sdf model
 
-# Front right motor with +z spin
-param set-default CA_ROTOR0_CT 100.0000
+# Front right motor with -z spin
+param set-default CA_ROTOR0_CT 85.0000
 param set-default CA_ROTOR0_KM 0.0250
-param set-default CA_ROTOR0_PX -0.4160
-param set-default CA_ROTOR0_PY -0.5040
+param set-default CA_ROTOR0_PX 0.4160
+param set-default CA_ROTOR0_PY 0.5040
 
-# Rear left motor with +z spin
-param set-default CA_ROTOR1_CT 100.0000
+# Rear left motor with -z spin
+param set-default CA_ROTOR1_CT 85.0000
 param set-default CA_ROTOR1_KM 0.0250
-param set-default CA_ROTOR1_PX 0.4800
-param set-default CA_ROTOR1_PY 0.5000
+param set-default CA_ROTOR1_PX -0.4800
+param set-default CA_ROTOR1_PY -0.5000
 
-# Front left motor with -z spin
-param set-default CA_ROTOR2_CT 100.0000
+# Front left motor with +z spin
+param set-default CA_ROTOR2_CT 85.0000
 param set-default CA_ROTOR2_KM -0.0250
-param set-default CA_ROTOR2_PX -0.4200
-param set-default CA_ROTOR2_PY 0.5000
+param set-default CA_ROTOR2_PX 0.4200
+param set-default CA_ROTOR2_PY -0.5000
 
-# Rear right motor with -z spin
-param set-default CA_ROTOR3_CT 100.0000
+# Rear right motor with +z spin
+param set-default CA_ROTOR3_CT 85.0000
 param set-default CA_ROTOR3_KM -0.0250
-param set-default CA_ROTOR3_PX 0.4800
-param set-default CA_ROTOR3_PY -0.5000
+param set-default CA_ROTOR3_PX -0.4800
+param set-default CA_ROTOR3_PY 0.5000
 
 # Pusher motor with +x spin
 param set-default CA_ROTOR4_CT 80.0000
 param set-default CA_ROTOR4_KM 0.0250
-param set-default CA_ROTOR4_PX 1.0260
-param set-default CA_ROTOR5_CT 6.5000
-param set-default CA_ROTOR5_KM 0.0500
+param set-default CA_ROTOR4_PX -1.0260
 param set-default CA_ROTOR4_AX 1
 param set-default CA_ROTOR4_AY 0
 param set-default CA_ROTOR4_AZ 0
@@ -99,6 +97,7 @@ param set-default SIM_GZ_SV_FUNC2 202
 param set-default SIM_GZ_SV_FUNC3 203
 param set-default SIM_GZ_SV_FUNC4 204
 param set-default SIM_GZ_SV_FUNC5 205
+
 # control surfaces (we have 5: 2 alierion, 2 elevator, 1 rudder)
 param set-default CA_SV_CS_COUNT 5
 param set-default CA_SV_CS0_TYPE 1 # left aileron, servo_0
@@ -111,6 +110,7 @@ param set-default CA_SV_CS3_TYPE 3 # elevator, servo_3
 param set-default CA_SV_CS3_TRQ_P 0.5 # pitch contribution
 param set-default CA_SV_CS4_TYPE 4 # rudder, servo_4
 param set-default CA_SV_CS4_TRQ_Y 0.5
+
 # FW controller parameters
 param set-default NPFG_PERIOD 12
 param set-default FW_PR_FF 0.2
@@ -122,9 +122,10 @@ param set-default FW_RR_P 0.3
 param set-default FW_THR_TRIM 0.25
 param set-default FW_THR_MAX 0.6
 param set-default FW_THR_MIN 0.05
-param set-default FW_T_CLMB_MAX 8
-param set-default FW_T_SINK_MAX 2.7
-param set-default FW_T_SINK_MIN 2.2
+param set-default FW_T_CLMB_MAX 2
+param set-default FW_T_SINK_MAX 5
+param set-default FW_T_SINK_MIN 2
+
 # MC controller parameters
 param set-default MC_AIRMODE 1
 param set-default MC_ROLLRATE_P 0.3
@@ -137,27 +138,43 @@ param set-default MPC_XY_VEL_P_ACC 3
 param set-default MPC_XY_VEL_I_ACC 4
 param set-default MPC_XY_VEL_D_ACC 0.1
 
-param set-default NAV_ACC_RAD 5
-param set-default NAV_DLL_ACT 2
 
+# Multicopter Hover & Landing
+param set-default MPC_THR_HOVER 0.38
+param set-default MPC_LAND_CRWL 0.5
+param set-default MPC_XY_CRUISE 5.0
+param set-default MPC_Z_VEL_MAX_UP 1.5
+param set-default MPC_Z_VEL_MAX_DN 1.5
+
+
+# Transition
+param set-default VT_F_TRANS_DUR 4.0
+param set-default VT_B_TRANS_DUR 3.0
 param set-default VT_FWD_THRUST_EN 4
 param set-default VT_PITCH_MIN -5
 param set-default VT_F_TRANS_THR 1
 param set-default VT_TYPE 2
+param set-default VT_ARSP_TRANS 14.0000
+param set-default VT_TRANS_TIMEOUT 20.0000
+
 param set-default FD_ESCS_EN 0
 
 # Battery
 param set-default BAT1_N_CELLS 12
 
-# Speed
-param set-default FW_AIRSPD_MAX 24.0000
+# Fixed-Wing Speed
+param set-default FW_AIRSPD_MAX 25.0000
 param set-default FW_AIRSPD_MIN 13.0000
 param set-default FW_AIRSPD_STALL 10.0000
 param set-default FW_AIRSPD_TRIM 18.0000
 param set-default FW_SERVICE_CEIL 3000.0000
-param set-default VT_ARSP_TRANS 13.0000
-param set-default VT_TRANS_TIMEOUT 20.0000
+param set-default FW_P_LIM_MAX 20.0
 
 # Weight
 param set-default WEIGHT_BASE 11.5000
 param set-default WEIGHT_GROSS 11.5000
+
+# MISC
+param set-default NAV_ACC_RAD 120
+param set-default NAV_DLL_ACT 2
+param set-default WV_EN 1
