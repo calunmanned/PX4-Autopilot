@@ -32,8 +32,8 @@ param set-default CA_ROTOR_COUNT 5
 # Our CAD model is facing negative x axis, but gazebo's reference frame is facing positive x axis
 # And PX4 seems is using the gazebo reference frame as the body frame (?), also PX4 is X forward, Y right, Z down
 # This case the rotor0 is on the rear left ,
-# rotor1 is on the front right (+x, +y), 
-# rotor2 is on the rear right, 
+# rotor1 is on the front right (+x, +y),
+# rotor2 is on the rear right,
 # rotor3 is on the front left
 # and rotor4 is the pusher motor
 # But this could be dangerous for HIL test as it doesn't follow the standard convention
@@ -42,26 +42,26 @@ param set-default CA_ROTOR_COUNT 5
 # Front right motor with +z spin
 param set-default CA_ROTOR0_CT 100.0000
 param set-default CA_ROTOR0_KM 0.0250
-param set-default CA_ROTOR0_PX -0.4160
-param set-default CA_ROTOR0_PY -0.5040
+param set-default CA_ROTOR0_PX 0.4160
+param set-default CA_ROTOR0_PY 0.5040
 
 # Rear left motor with +z spin
 param set-default CA_ROTOR1_CT 100.0000
 param set-default CA_ROTOR1_KM 0.0250
-param set-default CA_ROTOR1_PX 0.4800
-param set-default CA_ROTOR1_PY 0.5000
+param set-default CA_ROTOR1_PX -0.4800
+param set-default CA_ROTOR1_PY -0.5000
 
 # Front left motor with -z spin
 param set-default CA_ROTOR2_CT 100.0000
 param set-default CA_ROTOR2_KM -0.0250
-param set-default CA_ROTOR2_PX -0.4200
-param set-default CA_ROTOR2_PY 0.5000
+param set-default CA_ROTOR2_PX 0.4200
+param set-default CA_ROTOR2_PY -0.5000
 
 # Rear right motor with -z spin
 param set-default CA_ROTOR3_CT 100.0000
 param set-default CA_ROTOR3_KM -0.0250
-param set-default CA_ROTOR3_PX 0.4800
-param set-default CA_ROTOR3_PY -0.5000
+param set-default CA_ROTOR3_PX -0.4800
+param set-default CA_ROTOR3_PY 0.5000
 
 # Pusher motor with +x spin
 param set-default CA_ROTOR4_CT 80.0000
@@ -156,7 +156,7 @@ param set-default FW_AIRSPD_STALL 10.0000
 param set-default FW_AIRSPD_TRIM 18.0000
 param set-default FW_SERVICE_CEIL 3000.0000
 param set-default VT_ARSP_TRANS 13.0000
-param set-default VT_TRANS_TIMEOUT 20.0000
+param set-default VT_TRANS_TIMEOUT 200.0000
 
 # Weight
 param set-default WEIGHT_BASE 11.5000
