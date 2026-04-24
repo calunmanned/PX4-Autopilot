@@ -75,7 +75,7 @@
 [submodule "Tools/simulation/gz"]
 	path = Tools/simulation/gz
 	url = git@github.com:calunmanned/PX4-gazebo-models.git
-	branch = main
+	branch = sitl-dev
 [submodule "boards/modalai/voxl2/libfc-sensor-api"]
 	path = boards/modalai/voxl2/libfc-sensor-api
 	url = https://gitlab.com/voxl-public/voxl-sdk/core-libs/libfc-sensor-api.git
