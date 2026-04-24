@@ -8,7 +8,7 @@
 	branch = main
 [submodule "Tools/simulation/gazebo-classic/sitl_gazebo-classic"]
 	path = Tools/simulation/gazebo-classic/sitl_gazebo-classic
-	url = https://github.com/calunmanned/PX4-SITL_gazebo-classic.git
+	url = https://github.com/PX4/PX4-SITL_gazebo-classic.git
 	branch = main
 [submodule "src/drivers/gps/devices"]
 	path = src/drivers/gps/devices
@@ -74,7 +74,7 @@
 	branch = px4
 [submodule "Tools/simulation/gz"]
 	path = Tools/simulation/gz
-	url = https://github.com/calunmanned/PX4-gazebo-models.git
+	url = git@github.com:calunmanned/PX4-gazebo-models.git
 	branch = sitl-dev
 [submodule "boards/modalai/voxl2/libfc-sensor-api"]
 	path = boards/modalai/voxl2/libfc-sensor-api
@@ -89,6 +89,17 @@
 [submodule "src/drivers/uavcan/libdronecan/libuavcan/dsdl_compiler/pydronecan"]
 	path = src/drivers/uavcan/libdronecan/libuavcan/dsdl_compiler/pydronecan
 	url = https://github.com/dronecan/pydronecan
-[submodule "Tools/simulation/gazebo-classic/sitl_gazebo-classic"]
-	path = Tools/simulation/gazebo-classic/sitl_gazebo-classic
-	url = https://github.com/calunmanned/PX4-SITL_gazebo-classic
+[submodule "test/fuzztest"]
+	path = test/fuzztest
+	url = https://github.com/google/fuzztest.git
+	branch = main
+[submodule "src/lib/tensorflow_lite_micro/tflite_micro"]
+	path = src/lib/tensorflow_lite_micro/tflite_micro
+	url = https://github.com/PX4/tflite-micro.git
+	branch = main
+[submodule "src/drivers/ins/microstrain/mip_sdk"]
+	path = src/drivers/ins/microstrain/mip_sdk
+	url = https://github.com/PX4/LORD-MicroStrain_mip_sdk.git
+[submodule "src/drivers/ins/sbgecom/sbgECom"]
+	path = src/drivers/ins/sbgecom/sbgECom
+	url = https://github.com/PX4/sbgECom.git
