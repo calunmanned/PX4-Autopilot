@@ -6,49 +6,57 @@
 #
 
 #. ${R}etc/init.d/rc.vtol_defaults
-set VEHICLE_TYPE vtol
+set VEHICLE_TYPE fw #vtol
 
 # MAV_TYPE_VTOL_FIXEDROTOR 22
-param set-default MAV_TYPE 22
+param set-default MAV_TYPE 1
+
+#
+# Default parameters for fixed wing UAVs.
+#
+param set-default COM_VEL_FS_EVH 3
 
 param set-default COM_POS_LOW_EPH 50
 
-param set-default MIS_TAKEOFF_ALT 20
-param set-default MIS_YAW_TMT 10
+# Disable preflight disarm to not interfere with external launching
+param set-default COM_DISARM_PRFLT -1
 
-param set-default EKF2_ARSP_THR 10
+param set-default EKF2_ARSP_THR 8
 param set-default EKF2_FUSE_BETA 1
-
-param set-default HTE_VXY_THR 2
-
-param set-default MIS_TKO_LAND_REQ 2
-
-param set-default MPC_ACC_HOR_MAX 2
-param set-default MPC_VEL_MANUAL 5
-param set-default MPC_XY_ERR_MAX 5
-param set-default MPC_XY_VEL_MAX 8
-param set-default MPC_JERK_MAX 4.5
-param set-default MPC_YAW_MODE 4
-
-# reduce aggressiveness around roll and yaw axis,
-# as VTOLs usually have high intertia and lot af drag due to wings
-param set-default MC_ROLL_P 5
-param set-default MC_ROLLRATE_MAX 120
-param set-default MC_YAW_P 2
-param set-default MC_YAWRATE_MAX 120
-param set-default MPC_MAN_Y_MAX 90
+param set-default EKF2_MAG_ACCLIM 0
+param set-default EKF2_REQ_EPH 10
+param set-default EKF2_REQ_EPV 10
+param set-default EKF2_REQ_HDRIFT 0.5
+param set-default EKF2_REQ_SACC 1
+param set-default EKF2_REQ_VDRIFT 1
+param set-default EKF2_RNG_QLTY_T 3
 
 param set-default RTL_TYPE 1
+param set-default RTL_RETURN_ALT 100
+param set-default RTL_DESCEND_ALT 100
+param set-default RTL_LAND_DELAY -1
+
+#
+# FW uses L1 distance for acceptance radius.
+# Set a smaller NAV_ACC_RAD for vertical acceptance distance.
+#
+param set-default NAV_ACC_RAD 10
+
+param set-default MIS_TAKEOFF_ALT 25
+param set-default MIS_TKO_LAND_REQ 2
+
+#
+# FW takeoff acceleration can easily exceed ublox GPS 2G default.
+#
+param set-default GPS_UBX_DYNMODEL 8
 
 param set-default SYS_HAS_NUM_ASPD 1 # by default require an airspeed sensor
 
-param set-default WV_EN 1
-
-# END COPY PARAMS FROM rc.vtol_defaults file
+# END COPY PARAMS FROM rc.fw_defaults file
 
 PX4_SIMULATOR=${PX4_SIMULATOR:=gz}
 PX4_GZ_WORLD=${PX4_GZ_WORLD:=default}
-PX4_SIM_MODEL=${PX4_SIM_MODEL:=fighter_vtol}
+PX4_SIM_MODEL=${PX4_SIM_MODEL:=fighter_fw}
 
 param set-default SIM_GZ_EN 1
 param set-default SIM_GZ_EN_ASPD 1
@@ -84,7 +92,7 @@ param set-default CAL_MAG0_ZSCALE 1.0
 param set-default FD_ACT_EN 0
 param set-default FD_ACT_MOT_TOUT 500
 
-param set-default CA_AIRFRAME 2
+param set-default CA_AIRFRAME 1
 
 param set-default COM_PREARM_MODE 2
 
@@ -125,17 +133,17 @@ param set-default CA_ROTOR4_AZ 0
 
 # Motor outputs
 param set-default SIM_GZ_EC_FUNC1 101
-param set-default SIM_GZ_EC_MIN1 10
-param set-default SIM_GZ_EC_MAX1 1055
+param set-default SIM_GZ_EC_MIN1 0
+param set-default SIM_GZ_EC_MAX1 0
 param set-default SIM_GZ_EC_FUNC2 102
-param set-default SIM_GZ_EC_MIN2 10
-param set-default SIM_GZ_EC_MAX2 1055
+param set-default SIM_GZ_EC_MIN2 0
+param set-default SIM_GZ_EC_MAX2 0
 param set-default SIM_GZ_EC_FUNC3 103
-param set-default SIM_GZ_EC_MIN3 10
-param set-default SIM_GZ_EC_MAX3 1055
+param set-default SIM_GZ_EC_MIN3 0
+param set-default SIM_GZ_EC_MAX3 0
 param set-default SIM_GZ_EC_FUNC4 104
-param set-default SIM_GZ_EC_MIN4 10
-param set-default SIM_GZ_EC_MAX4 1055
+param set-default SIM_GZ_EC_MIN4 0
+param set-default SIM_GZ_EC_MAX4 0
 
 # Pusher motor
 param set-default SIM_GZ_EC_FUNC5 105
@@ -199,32 +207,10 @@ param set-default FW_T_CLMB_MAX 8
 param set-default FW_T_SINK_MAX 2.7
 param set-default FW_T_SINK_MIN 2.2
 
-# MC attitude control - increased gains for better transition stability
-param set-default MC_AIRMODE 1
-param set-default MC_ROLLRATE_P 0.15
-param set-default MC_PITCHRATE_P 0.2
-param set-default MC_YAW_P 1.6
-param set-default MC_YAWRATE_MAX 30
-
 param set-default MIS_TAKEOFF_ALT 10
-
-param set-default MPC_XY_P 0.8
-param set-default MPC_XY_VEL_P_ACC 3
-param set-default MPC_XY_VEL_I_ACC 0.4
-param set-default MPC_XY_VEL_D_ACC 0.2
-param set-default MPC_THR_HOVER 0.38
 
 param set-default NAV_ACC_RAD 50
 param set-default NAV_DLL_ACT 2
-
-# VTOL transition parameters
-param set-default VT_FWD_THRUST_EN 4
-param set-default VT_F_TRANS_THR 0.85
-param set-default VT_TYPE 2
-param set-default VT_PITCH_MIN -5
-param set-default VT_QC_T_ALT_LOSS 40
-param set-default VT_ARSP_BLEND 10
-param set-default VT_ARSP_TRANS 13
 
 param set-default FD_ESCS_EN 0
 
@@ -249,30 +235,10 @@ param set-default GF_ACTION 3
 param set-default GF_MAX_HOR_DIST 5000
 param set-default GF_MAX_VER_DIST 150
 param set-default MIS_TAKEOFF_ALT 50
-param set-default MPC_ACC_DOWN_MAX 1.5
-param set-default MPC_ACC_HOR 1
-param set-default MPC_ACC_HOR_MAX 1
-param set-default MPC_ACC_UP_MAX 1.5
-param set-default MPC_ALT_MODE 0
-param set-default MPC_JERK_AUTO 2
-param set-default MPC_JERK_MAX 2.5
-param set-default MPC_LAND_ALT2 6
-param set-default MPC_LAND_CRWL 0.2
-param set-default MPC_LAND_SPEED 0.5
-param set-default MPC_MAN_Y_MAX 25
-param set-default MPC_THR_HOVER 0.55
-param set-default MPC_TILTMAX_AIR 45
 param set-default NAV_LOITER_RAD 120
 param set-default NAV_MC_ALT_RAD 1
 param set-default NPFG_PERIOD 10
 param set-default RTL_LOITER_RAD 200
 param set-default RTL_MIN_DIST 60
-param set-default VT_ARSP_BLEND 10
-param set-default VT_B_DEC_MSS 1.5
-param set-default VT_ELEV_MC_LOCK 0 #enable control surface movement in hover
-param set-default VT_FW_MIN_ALT 10
-param set-default VT_F_TRANS_DUR 2
-param set-default VT_F_TR_OL_TM 10
-param set-default VT_TRANS_MIN_TM 5
 param set-default WV_YRATE_MAX 25
 
