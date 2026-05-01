@@ -84,6 +84,20 @@ PARAM_DEFINE_INT32(SYS_AUTOCONFIG, 0);
 PARAM_DEFINE_INT32(SYS_HITL, 0);
 
 /**
+ * Enable real actuator output during HITL
+ *
+ * When enabled, real actuator outputs (PWM, UAVCAN) will be active
+ * alongside simulated outputs during Hardware-in-the-Loop testing.
+ *
+ * WARNING: Propellers will spin! Ensure safety precautions.
+ *
+ * @boolean
+ * @reboot_required true
+ * @group System
+ */
+PARAM_DEFINE_INT32(HIL_ACT_REAL, 0);
+
+/**
  * Parameter version
  *
  * This is used internally only: an airframe configuration might set an expected

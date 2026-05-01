@@ -35,11 +35,12 @@
 
 #include <px4_platform_common/sem.hpp>
 
-PWMOut::PWMOut() :
+PWMOut::PWMOut(bool ignore_lockdown) :
 	OutputModuleInterface(MODULE_NAME, px4::wq_configurations::hp_default)
 {
 	_pwm_mask = ((1u << DIRECT_PWM_OUTPUT_CHANNELS) - 1);
 	_mixing_output.setMaxNumOutputs(DIRECT_PWM_OUTPUT_CHANNELS);
+	_mixing_output.setIgnoreLockdown(ignore_lockdown);
 
 	// Getting initial parameter values
 	update_params();
@@ -195,7 +196,24 @@ void PWMOut::Run()
 
 int PWMOut::task_spawn(int argc, char *argv[])
 {
-	PWMOut *instance = new PWMOut();
+	bool ignore_lockdown = false;
+
+	int myoptind = 1;
+	int ch;
+	const char *myoptarg = nullptr;
+
+	while ((ch = px4_getopt(argc, argv, "l", &myoptind, &myoptarg)) != EOF) {
+		switch (ch) {
+		case 'l':
+			ignore_lockdown = true;
+			break;
+
+		default:
+			return print_usage("unrecognized flag");
+		}
+	}
+
+	PWMOut *instance = new PWMOut(ignore_lockdown);
 
 	if (!instance) {
 		PX4_ERR("alloc failed");
@@ -325,6 +343,7 @@ px4io driver is used for main ones.
 
 	PRINT_MODULE_USAGE_NAME("pwm_out", "driver");
 	PRINT_MODULE_USAGE_COMMAND("start");
+	PRINT_MODULE_USAGE_PARAM_FLAG('l', "Ignore lockdown (for HITL with real actuator output)", true);
 	PRINT_MODULE_USAGE_DEFAULT_COMMANDS();
 
 	return 0;
