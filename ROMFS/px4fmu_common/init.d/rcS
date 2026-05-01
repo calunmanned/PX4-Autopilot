@@ -472,6 +472,13 @@ else
 			tune_control play error
 		fi
 
+		# Enable real actuator output if HIL_ACT_REAL is set
+		if param compare HIL_ACT_REAL 1
+		then
+			echo "[HIL] WARNING: Real actuator output enabled!"
+			pwm_out start -l
+		fi
+
 	else
 		commander start
 

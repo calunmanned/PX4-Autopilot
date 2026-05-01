@@ -626,6 +626,18 @@ transition_result_t Commander::arm(arm_disarm_reason_t calling_reason, bool run_
 	events::send<events::px4::enums::arm_disarm_reason_t>(events::ID("commander_armed_by"), events::Log::Info,
 			"Armed by {1}", calling_reason);
 
+	// Warn if real actuator output is enabled during HITL
+	if (_vehicle_status.hil_state == vehicle_status_s::HIL_STATE_ON) {
+		int32_t hil_act_real = 0;
+		param_get(param_find("HIL_ACT_REAL"), &hil_act_real);
+
+		if (hil_act_real == 1) {
+			mavlink_log_critical(&_mavlink_log_pub, "WARNING: Real motors active in HITL!\t");
+			events::send(events::ID("commander_hil_real_motors"), {events::Log::Critical, events::LogInternal::Info},
+				     "WARNING: Real motors active in HITL!");
+		}
+	}
+
 	if (_param_com_home_en.get() && !_mission_in_progress) {
 		_home_position.setHomePosition();
 	}

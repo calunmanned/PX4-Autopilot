@@ -56,7 +56,7 @@ using namespace time_literals;
 class PWMOut final : public ModuleBase<PWMOut>, public OutputModuleInterface
 {
 public:
-	PWMOut();
+	PWMOut(bool ignore_lockdown = false);
 	~PWMOut() override;
 
 	/** @see ModuleBase */

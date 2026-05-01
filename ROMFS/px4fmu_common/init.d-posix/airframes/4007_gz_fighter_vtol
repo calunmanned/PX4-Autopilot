@@ -16,8 +16,10 @@ param set-default COM_POS_LOW_EPH 50
 param set-default MIS_TAKEOFF_ALT 20
 param set-default MIS_YAW_TMT 10
 
+param set-default EKF2_ABL_LIM 0.5
 param set-default EKF2_ARSP_THR 10
 param set-default EKF2_FUSE_BETA 1
+param set-default EKF2_HGT_REF 0 #set to baro for sitl/hitl
 
 param set-default HTE_VXY_THR 2
 
@@ -228,6 +230,7 @@ param set-default VT_ARSP_TRANS 13
 
 param set-default FD_ESCS_EN 0
 
+param set-default ASPD_DO_CHECKS 3
 param set-default BAT1_CAPACITY 22000
 param set-default BAT1_N_CELLS 12
 param set-default COM_OBL_RC_ACT 3
