@@ -25,13 +25,13 @@
 
 param set-default MAV_TYPE 22
 
-param set-default COM_RC_IN_MODE 1
+param set-default COM_RC_IN_MODE 2 #rc or mavlink (joystick)
 
+# Airspeed sensor enabled (required for VTOL fixed-wing flight)
+param set-default SYS_HAS_NUM_ASPD 1
 param set-default ASPD_DO_CHECKS 3
 
-param set UAVCAN_ENABLE 3
-
-param set RC_CRSF_CFG 102 #rc receiver plugged into telem2 port
+param set-default RC_CRSF_CFG 102 #rc receiver plugged into telem2 port
 
 param set-default EKF2_ABL_LIM 0.5
 param set-default EKF2_ANGERR_INIT 0.01
@@ -39,7 +39,33 @@ param set-default EKF2_GBIAS_INIT 0.01
 param set-default EKF2_MAG_TYPE 1
 param set-default EKF2_ARSP_THR 10
 param set-default EKF2_FUSE_BETA 1
-param set-default EKF2_HGT_REF 0 #set to baro for sitl/hitl
+param set-default EKF2_HGT_REF 0 #force baro for HITL (must override any saved value)
+
+# HITL EKF/sensor check overrides (use 'param set' to force override saved values)
+param set EKF2_MAG_CHECK 0      # Disable mag preflight checks for HITL
+param set EKF2_GPS_CHECK 0      # Disable GPS preflight checks for HITL
+param set EKF2_HGT_REF 0        # Use barometer for height
+param set EKF2_MAG_DECL 0       # Assume zero declination in simulation
+param set EKF2_REQ_EPH 10.0     # Relaxed GPS horizontal accuracy (default 3.0)
+param set EKF2_REQ_EPV 10.0     # Relaxed GPS vertical accuracy (default 5.0)
+param set EKF2_REQ_HDRIFT 0.5   # Relaxed horizontal drift limit (default 0.1)
+param set EKF2_REQ_VDRIFT 0.5   # Relaxed vertical drift limit (default 0.15)
+param set EKF2_REQ_SACC 2.0     # Relaxed speed accuracy (default 1.0)
+param set COM_ARM_MAG_ANG 180   # Allow any mag/GPS heading difference
+param set COM_ARM_WO_GPS 1      # Allow arming without GPS lock
+param set COM_ARM_HFLT_CHK 0    # Disable heading preflight check for HITL
+param set COM_ARM_IMU_ACC 1.0   # Relaxed IMU accel check
+param set COM_ARM_IMU_GYR 0.3   # Relaxed IMU gyro check
+
+# EKF2 heading/mag tuning for HITL
+param set EKF2_DECL_TYPE 0      # Use manual declination only (no auto geo lookup)
+param set EKF2_HDG_GATE 10.0    # Relaxed heading innovation gate
+param set EKF2_MAG_GATE 5.0     # Relaxed mag innovation gate
+param set EKF2_MAG_NOISE 0.1    # Increased mag noise tolerance
+
+# Disable auto-disarm timeouts for HITL testing
+param set COM_DISARM_LAND 0     # Disable auto-disarm after landing
+param set COM_DISARM_PRFLT 0    # Disable auto-disarm before takeoff
 
 param set-default HTE_VXY_THR 2
 
@@ -130,8 +156,6 @@ param set-default VT_FW_MIN_ALT 10
 param set-default WV_EN 1
 param set-default WV_YRATE_MAX 25
 
-param set-default SYS_HAS_NUM_ASPD 1
-
 # Battery
 param set-default BAT1_CAPACITY 22000
 param set-default BAT1_N_CELLS 12
@@ -212,15 +236,31 @@ param set-default HIL_ACT_FUNC10 205
 # Enable HITL mode
 param set SYS_HITL 1
 
+# HITL sensor calibration - device IDs for HITL driver
+# Barometer
+param set CAL_BARO0_ID 6620172
+param set CAL_BARO0_OFF 0.0
+param set CAL_BARO0_PRIO 50
+
+# IMU (accelerometer and gyro) for HITL
+param set CAL_ACC0_ID 1310988
+param set CAL_ACC0_PRIO 50
+param set CAL_GYRO0_ID 1310988
+param set CAL_GYRO0_PRIO 50
+
+# Magnetometer for HITL
+param set CAL_MAG0_ID 197388
+param set CAL_MAG0_PRIO 50
+
 # Enable real actuator output during HITL
 # WARNING: Motors will spin! Remove propellers for safety!
-param set-default HIL_ACT_REAL 1
+param set HIL_ACT_REAL 1
 
 # Keep UAVCAN enabled for real motor output (do NOT disable like other .hil files)
-# param set UAVCAN_ENABLE 0
+param set UAVCAN_ENABLE 3
 
 # Disable some checks to allow flying without real battery
-param set-default CBRK_SUPPLY_CHK 894281
+param set CBRK_SUPPLY_CHK 894281
 
 # Disable failure detection that may interfere with HITL
 param set-default FD_ACT_EN 0
