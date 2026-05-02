@@ -31,7 +31,8 @@ param set-default COM_RC_IN_MODE 2 #rc or mavlink (joystick)
 param set-default SYS_HAS_NUM_ASPD 1
 param set-default ASPD_DO_CHECKS 3
 
-param set-default RC_CRSF_CFG 102 #rc receiver plugged into telem2 port
+param set-default RC_CRSF_PRT_CFG 102  # RC receiver (XLRS/CRSF) on TELEM2
+param set-default RC_CRSF_TEL_EN 1    # Enable CRSF telemetry
 
 param set-default EKF2_ABL_LIM 0.5
 param set-default EKF2_ANGERR_INIT 0.01
@@ -150,7 +151,7 @@ param set-default VT_QC_T_ALT_LOSS 40
 param set-default VT_ARSP_BLEND 10
 param set-default VT_ARSP_TRANS 13
 param set-default VT_B_DEC_MSS 1.5
-param set-default VT_ELEV_MC_LOCK 0
+param set-default VT_ELEV_MC_LOCK 1
 param set-default VT_FW_MIN_ALT 10
 
 param set-default WV_EN 1
@@ -220,6 +221,13 @@ param set-default CA_SV_CS3_TRQ_P 1
 # Rudder
 param set-default CA_SV_CS4_TYPE 4
 param set-default CA_SV_CS4_TRQ_Y 1
+
+# PWM outputs
+param set PWM_MAIN_FUNC1 201
+param set PWM_MAIN_FUNC1 202
+param set PWM_MAIN_FUNC1 203
+param set PWM_MAIN_FUNC1 204
+param set PWM_MAIN_FUNC1 205
 
 # HIL actuator mapping (motors 101-105, servos 201-205)
 param set-default HIL_ACT_FUNC1 101
