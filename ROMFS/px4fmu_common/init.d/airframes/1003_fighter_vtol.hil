@@ -287,6 +287,9 @@ param set-default COM_PREARM_MODE 2
 param set-default COM_OBL_RC_ACT 3
 param set-default COM_RCL_EXCEPT 7
 param set-default COM_RC_STICK_OV 15
+param set-default COM_FLTMODE1 2 #POSITION
+param set-default COM_FLTMODE4 7 #OFFBOARD
+param set-default COM_FLTMODE6 3 #MISSION
 
 # Geofence
 param set-default GF_ACTION 3
