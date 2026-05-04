@@ -85,7 +85,19 @@ private:
 			msg.chan16_raw = (rc.channel_count > 15) ? rc.values[15] : UINT16_MAX;
 			msg.chan17_raw = (rc.channel_count > 16) ? rc.values[16] : UINT16_MAX;
 			msg.chan18_raw = (rc.channel_count > 17) ? rc.values[17] : UINT16_MAX;
-			msg.rssi = (rc.channel_count > 0) ? rc.rssi : 0;
+			// Prefer link_quality (CRSF/ELRS) over legacy rssi field
+			// MAVLink rssi: 0-254 = percentage, 255 = not available
+			if (rc.channel_count > 0) {
+				if (rc.link_quality >= 0) {
+					msg.rssi = rc.link_quality * 254 / 100;
+				} else if (rc.rssi >= 0) {
+					msg.rssi = rc.rssi * 254 / 100;
+				} else {
+					msg.rssi = 255;
+				}
+			} else {
+				msg.rssi = 255;
+			}
 
 			mavlink_msg_rc_channels_send_struct(_mavlink->get_channel(), &msg);
 			return true;
