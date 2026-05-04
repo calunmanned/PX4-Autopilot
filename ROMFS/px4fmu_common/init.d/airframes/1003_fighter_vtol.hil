@@ -224,10 +224,10 @@ param set-default CA_SV_CS4_TRQ_Y 1
 
 # PWM outputs
 param set PWM_MAIN_FUNC1 201
-param set PWM_MAIN_FUNC1 202
-param set PWM_MAIN_FUNC1 203
-param set PWM_MAIN_FUNC1 204
-param set PWM_MAIN_FUNC1 205
+param set PWM_MAIN_FUNC2 202
+param set PWM_MAIN_FUNC3 203
+param set PWM_MAIN_FUNC4 204
+param set PWM_MAIN_FUNC5 205
 
 # HIL actuator mapping (motors 101-105, servos 201-205)
 param set-default HIL_ACT_FUNC1 101
@@ -292,3 +292,7 @@ param set-default COM_RC_STICK_OV 15
 param set-default GF_ACTION 3
 param set-default GF_MAX_HOR_DIST 5000
 param set-default GF_MAX_VER_DIST 150
+
+# Offboard
+param set-default UXRCE_DDS_CFG 103
+param set-default SER_TEL3_BAUD 921600
