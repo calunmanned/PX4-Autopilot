@@ -754,6 +754,10 @@ void Navigator::run()
 				// reset cruise speed and throttle to default when transitioning (VTOL Takeoff handles it separately)
 				reset_cruising_speed();
 				set_cruising_throttle();
+			} else if (cmd.command == 224) { 
+				// handle NAV_CMD_DO_SET_MISSION_CURRENT
+				// TODO: add the command type to the uORB message instead of the hardcoded value
+				_mission.set_current_mission_index((int)cmd.param1);
 			}
 		}
 

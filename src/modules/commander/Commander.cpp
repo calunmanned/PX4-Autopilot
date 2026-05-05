@@ -1552,6 +1552,10 @@ Commander::handle_command(const vehicle_command_s &cmd)
 	case vehicle_command_s::VEHICLE_CMD_EXTERNAL_ATTITUDE_ESTIMATE:
 		/* ignore commands that are handled by other parts of the system */
 		break;
+	
+	case 224: // NAV_CMD_DO_SET_MISSION_CURRENT, TODO: add command types instead of hardcoding numbers	
+		answer_command(cmd, vehicle_command_ack_s::VEHICLE_CMD_RESULT_ACCEPTED);
+		break;
 
 	default:
 		/* Warn about unsupported commands, this makes sense because only commands
