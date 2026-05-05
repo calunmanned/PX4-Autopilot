@@ -158,6 +158,7 @@ param set-default WV_EN 1
 param set-default WV_YRATE_MAX 25
 
 # Battery
+param set-default BAT1_SOURCE 1
 param set-default BAT1_CAPACITY 22000
 param set-default BAT1_N_CELLS 12
 
