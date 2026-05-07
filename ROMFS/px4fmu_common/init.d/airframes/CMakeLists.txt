@@ -107,6 +107,8 @@ if(CONFIG_MODULES_MC_RATE_CONTROL)
 		16001_helicopter
 
 		24001_dodeca_cox
+
+		80000_generic_vtol_supernal
 	)
 endif()
 
@@ -138,6 +140,7 @@ if(CONFIG_MODULES_VTOL_ATT_CONTROL)
 		13100_generic_vtol_tiltrotor
 		13030_generic_vtol_quad_tiltrotor
 		13200_generic_vtol_tailsitter
+		80000_generic_vtol_supernal
 	)
 endif()
 
