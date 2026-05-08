@@ -16,15 +16,7 @@ param set-default CA_AIRFRAME 2
 param set-default CA_ROTOR_COUNT 5
 param set-default CA_ROTOR4_AX 1
 param set-default CA_ROTOR4_AZ 0
-param set-default CA_SV_CS_COUNT 4
-param set-default CA_SV_CS0_TYPE 1
-param set-default CA_SV_CS0_TRQ_R -0.5
-param set-default CA_SV_CS1_TYPE 2
-param set-default CA_SV_CS1_TRQ_R 0.5
-param set-default CA_SV_CS2_TYPE 3
-param set-default CA_SV_CS2_TRQ_P 1
-param set-default CA_SV_CS3_TRQ_Y 1
-param set-default CA_SV_CS3_TYPE 4
+
 param set-default VT_TYPE 2
 param set-default MAV_TYPE 22
 
@@ -32,7 +24,7 @@ param set-default COM_RC_IN_MODE 2 #rc or mavlink (joystick)
 
 # Airspeed sensor enabled (required for VTOL fixed-wing flight)
 param set-default SYS_HAS_NUM_ASPD 1
-param set-default ASPD_DO_CHECKS 3
+param set-default ASPD_DO_CHECKS 7
 
 param set-default RC_CRSF_PRT_CFG 102  # RC receiver (XLRS/CRSF) on TELEM2
 param set-default RC_CRSF_TEL_EN 1    # Enable CRSF telemetry
@@ -187,16 +179,16 @@ param set-default CA_SV_CS0_TRQ_R -0.5
 param set-default CA_SV_CS1_TYPE 2
 param set-default CA_SV_CS1_TRQ_R 0.5
 
-# Left elevator
+# Right elevator
 param set-default CA_SV_CS2_TYPE 3
 param set-default CA_SV_CS2_TRQ_P 1
 
-# Right elevator
-param set-default CA_SV_CS3_TYPE 3
-param set-default CA_SV_CS3_TRQ_P 1
+# Left elevator
+param set-default CA_SV_CS3_TYPE 4
+param set-default CA_SV_CS3_TRQ_P -1
 
 # Rudder
-param set-default CA_SV_CS4_TYPE 4
+param set-default CA_SV_CS4_TYPE 5
 param set-default CA_SV_CS4_TRQ_Y 1
 
 # PWM outputs
@@ -205,6 +197,23 @@ param set PWM_MAIN_FUNC2 202
 param set PWM_MAIN_FUNC3 203
 param set PWM_MAIN_FUNC4 204
 param set PWM_MAIN_FUNC5 205
+
+param set PWM_MAIN_DIS1 1440
+param set PWM_MAIN_DIS2 1570
+param set PWM_MAIN_DIS3 1470
+param set PWM_MAIN_DIS4 1570
+param set PWM_MAIN_DIS5 1460
+
+param set PWM_MAIN_MAX1 1850
+param set PWM_MAIN_MAX2 1960
+param set PWM_MAIN_MAX3 1760
+param set PWM_MAIN_MAX4 1890
+param set PWM_MAIN_MAX5 1960
+param set PWM_MAIN_MIN1 1070
+param set PWM_MAIN_MIN2 1170
+param set PWM_MAIN_MIN3 1150
+param set PWM_MAIN_MIN4 1240
+param set PWM_MAIN_MIN5 1130
 
 # Enable HITL mode
 param set-default SYS_HITL 0
@@ -240,6 +249,7 @@ param set-default COM_RC_STICK_OV 15
 param set-default COM_FLTMODE1 2 #POSITION
 param set-default COM_FLTMODE4 3 #OFFBOARD
 param set-default COM_FLTMODE6 7 #MISSION
+param set-default RC_MAP_FLTMODE 6 #Channel 6
 
 # Geofence
 param set-default GF_ACTION 3
@@ -249,3 +259,11 @@ param set-default GF_MAX_VER_DIST 150
 # Offboard
 param set-default UXRCE_DDS_CFG 103
 param set-default SER_TEL3_BAUD 921600
+
+# UAVCAN sensors
+param set-default UAVCAN_NODE_ID 15
+param set-default UAVCAN_SUB_ASPD 1
+param set-default UAVCAN_SUB_DPRES 1
+param set-default UAVCAN_SUB_BAT 1
+
+param set-default MAN_ARM_GESTURE 0 #disable arming with throttle/yaw stick
