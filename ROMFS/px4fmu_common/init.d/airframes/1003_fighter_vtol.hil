@@ -300,3 +300,11 @@ param set-default GF_MAX_VER_DIST 150
 # Offboard
 param set-default UXRCE_DDS_CFG 103
 param set-default SER_TEL3_BAUD 921600
+
+# UAVCAN sensors
+param set-default UAVCAN_NODE_ID 15
+param set-default UAVCAN_SUB_ASPD 1
+param set-default UAVCAN_SUB_DPRES 1
+param set-default UAVCAN_SUB_BAT 2
+
+param set-default MAN_ARM_GESTURE 0 #disable arming with throttle/yaw stick

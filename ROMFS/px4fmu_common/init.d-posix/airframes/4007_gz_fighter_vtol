@@ -44,8 +44,6 @@ param set-default RTL_TYPE 1
 
 param set-default SYS_HAS_NUM_ASPD 1 # by default require an airspeed sensor
 
-param set-default WV_EN 1
-
 # END COPY PARAMS FROM rc.vtol_defaults file
 
 PX4_SIMULATOR=${PX4_SIMULATOR:=gz}
@@ -83,12 +81,7 @@ param set-default CAL_MAG0_XSCALE 1.0
 param set-default CAL_MAG0_YSCALE 1.0
 param set-default CAL_MAG0_ZSCALE 1.0
 
-param set-default FD_ACT_EN 0
-param set-default FD_ACT_MOT_TOUT 500
-
 param set-default CA_AIRFRAME 2
-
-param set-default COM_PREARM_MODE 2
 
 # Rotor configuration (4 MC + 1 pusher)
 param set-default CA_ROTOR_COUNT 5
@@ -182,7 +175,19 @@ param set-default CA_SV_CS3_TRQ_P 1
 param set-default CA_SV_CS4_TYPE 4
 param set-default CA_SV_CS4_TRQ_Y 1
 
-param set-default NPFG_PERIOD 12
+param set-default NPFG_PERIOD 10
+
+param set-default FW_AIRSPD_MAX 25
+param set-default FW_AIRSPD_MIN 14
+param set-default FW_AIRSPD_TRIM 20
+param set-default FW_PSP_OFF 0
+param set-default FW_P_LIM_MAX 20
+param set-default FW_P_LIM_MIN -25
+param set-default FW_R_LIM 27
+param set-default FW_T_CLMB_MAX 2
+param set-default FW_T_CLMB_R_SP 2
+param set-default FW_T_SINK_MAX 5
+param set-default FW_T_SINK_MIN 2
 param set-default FW_PR_FF 0.2
 param set-default FW_PR_P 0.6
 param set-default FW_PR_D 0.03
@@ -195,63 +200,26 @@ param set-default FW_RR_FF 0.1
 param set-default FW_RR_P 0.3
 param set-default FW_Y_RMAX 30
 param set-default FW_THR_TRIM 0.25
-param set-default FW_THR_MAX 0.6
+param set-default FW_THR_MAX 0.75
 param set-default FW_THR_MIN 0.05
-param set-default FW_T_CLMB_MAX 8
-param set-default FW_T_SINK_MAX 2.7
-param set-default FW_T_SINK_MIN 2.2
 
 # MC attitude control - increased gains for better transition stability
 param set-default MC_AIRMODE 1
+param set-default MC_ROLL_P 5
+param set-default MC_ROLLRATE_K 0.6
+param set-default MC_ROLLRATE_MAX 120
 param set-default MC_ROLLRATE_P 0.15
-param set-default MC_PITCHRATE_P 0.2
+param set-default MC_PITCH_P 5
+param set-default MC_PITCHRATE_K 0.4
+param set-default MC_PITCHRATE_P 0.1
+param set-default MC_PITCHRATE_D 0.008
 param set-default MC_YAW_P 1.6
 param set-default MC_YAWRATE_MAX 30
 
-param set-default MIS_TAKEOFF_ALT 10
-
-param set-default MPC_XY_P 0.8
-param set-default MPC_XY_VEL_P_ACC 3
-param set-default MPC_XY_VEL_I_ACC 0.4
-param set-default MPC_XY_VEL_D_ACC 0.2
-param set-default MPC_THR_HOVER 0.38
-
-param set-default NAV_ACC_RAD 50
-param set-default NAV_DLL_ACT 2
-
-# VTOL transition parameters
-param set-default VT_FWD_THRUST_EN 4
-param set-default VT_F_TRANS_THR 0.85
-param set-default VT_TYPE 2
-param set-default VT_PITCH_MIN -5
-param set-default VT_QC_T_ALT_LOSS 40
-param set-default VT_ARSP_BLEND 10
-param set-default VT_ARSP_TRANS 13
-
-param set-default FD_ESCS_EN 0
-
-param set-default ASPD_DO_CHECKS 3
-param set-default BAT1_CAPACITY 22000
-param set-default BAT1_N_CELLS 12
-param set-default COM_OBL_RC_ACT 3
-param set-default COM_RCL_EXCEPT 7
-param set-default COM_RC_IN_MODE 3
-param set-default COM_RC_STICK_OV 15
-param set-default FW_AIRSPD_TRIM 20
-param set-default FW_PSP_OFF 0
-param set-default FW_P_LIM_MAX 20
-param set-default FW_P_LIM_MIN -25
-param set-default FW_R_LIM 27
-param set-default FW_THR_MAX 1
-param set-default FW_THR_TRIM 0.58
-param set-default FW_T_CLMB_MAX 2
-param set-default FW_T_CLMB_R_SP 2
-param set-default FW_T_SINK_MAX 5
-param set-default FW_T_SINK_MIN 2
-param set-default GF_ACTION 3
-param set-default GF_MAX_HOR_DIST 5000
-param set-default GF_MAX_VER_DIST 150
 param set-default MIS_TAKEOFF_ALT 50
+param set-default MIS_YAW_TMT 10
+param set-default MIS_TKO_LAND_REQ 2
+
 param set-default MPC_ACC_DOWN_MAX 1.5
 param set-default MPC_ACC_HOR 1
 param set-default MPC_ACC_HOR_MAX 1
@@ -263,19 +231,72 @@ param set-default MPC_LAND_ALT2 6
 param set-default MPC_LAND_CRWL 0.2
 param set-default MPC_LAND_SPEED 0.5
 param set-default MPC_MAN_Y_MAX 25
-param set-default MPC_THR_HOVER 0.55
+param set-default MPC_THR_HOVER 0.38
 param set-default MPC_TILTMAX_AIR 45
+param set-default MPC_VEL_MANUAL 5
+param set-default MPC_XY_ERR_MAX 5
+param set-default MPC_XY_VEL_MAX 6
+param set-default MPC_XY_P 0.8
+param set-default MPC_XY_VEL_P_ACC 3
+param set-default MPC_XY_VEL_I_ACC 0.4
+param set-default MPC_XY_VEL_D_ACC 0.2
+param set-default MPC_Z_VEL_P_ACC 12
+param set-default MPC_Z_VEL_I_ACC 3
+
+param set-default NAV_ACC_RAD 5
+param set-default NAV_DLL_ACT 2
 param set-default NAV_LOITER_RAD 120
 param set-default NAV_MC_ALT_RAD 1
-param set-default NPFG_PERIOD 10
+
+param set-default RTL_DESCEND_ALT 10
+param set-default RTL_RETURN_ALT 30
+param set-default RTL_TYPE 3
 param set-default RTL_LOITER_RAD 200
 param set-default RTL_MIN_DIST 60
+
+# VTOL transition parameters
+param set-default VT_TYPE 2
 param set-default VT_ARSP_BLEND 10
+param set-default VT_ARSP_TRANS 13
 param set-default VT_B_DEC_MSS 1.5
-param set-default VT_ELEV_MC_LOCK 0 #enable control surface movement in hover
-param set-default VT_FW_MIN_ALT 10
+param set-default VT_FWD_THRUST_EN 4
+param set-default VT_F_TRANS_THR 0.85
 param set-default VT_F_TRANS_DUR 2
 param set-default VT_F_TR_OL_TM 10
+param set-default VT_FW_MIN_ALT 20
+param set-default VT_PITCH_MIN -5
+param set-default VT_QC_T_ALT_LOSS 40
+param set-default VT_ELEV_MC_LOCK 0 #enable control surface movement in hover
 param set-default VT_TRANS_MIN_TM 5
+
+param set-default FD_ACT_EN 0
+param set-default FD_ESCS_EN 0
+param set-default FD_ACT_MOT_TOUT 500
+
+param set-default COM_PREARM_MODE 2
+param set-default COM_OBL_RC_ACT 3
+param set-default COM_RCL_EXCEPT 7
+param set-default COM_RC_IN_MODE 2 #rc or mavlink (joystick)
+param set-default COM_RC_STICK_OV 15
+param set-default COM_FLTMODE1 2 #POSITION
+param set-default COM_FLTMODE4 3 #OFFBOARD
+param set-default COM_FLTMODE6 7 #MISSION
+
+param set-default RC_MAP_FLTMODE 6 #Channel 6
+param set-default RC_MAP_KILL_SW 8 #Channel 8
+
+param set-default SYS_HAS_NUM_ASPD 1
+param set-default ASPD_DO_CHECKS 3
+
+param set-default SDLOG_PROFILE 3 #3=System Identification
+
+param set-default BAT1_CAPACITY 22000
+param set-default BAT1_N_CELLS 12
+
+param set-default GF_ACTION 3
+param set-default GF_MAX_HOR_DIST 5000
+param set-default GF_MAX_VER_DIST 150
+
+param set-default WV_EN 1
 param set-default WV_YRATE_MAX 25
 
