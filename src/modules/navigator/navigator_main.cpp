@@ -758,6 +758,9 @@ void Navigator::run()
 				// handle NAV_CMD_DO_SET_MISSION_CURRENT
 				// TODO: add the command type to the uORB message instead of the hardcoded value
 				_mission.set_current_mission_index((int)cmd.param1);
+				_mission_result.seq_reached = (int)cmd.param1-1;
+				_mission_result.seq_current = (int)cmd.param1;
+				set_mission_result_updated();
 			}
 		}
 
