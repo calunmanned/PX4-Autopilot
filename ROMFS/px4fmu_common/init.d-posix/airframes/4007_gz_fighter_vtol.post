@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# Post-startup script for fighter_vtol
+# Starts an additional MAVLink instance on port 14552 for groundstation GUI
+#
+
+mavlink start -x -u 14552 -r 4000000 -m onboard -o 14553
