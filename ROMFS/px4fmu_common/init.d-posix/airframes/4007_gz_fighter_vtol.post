@@ -1,7 +1,10 @@
 #!/bin/sh
 #
 # Post-startup script for fighter_vtol
-# Starts an additional MAVLink instance on port 14552 for groundstation GUI
+# Starts an additional MAVLink instance for groundstation GUI
+#
+# -u 14553: PX4 binds to local port 14553 (receives commands from groundstation)
+# -o 14552: PX4 sends to remote port 14552 (where groundstation listens)
 #
 
-mavlink start -x -u 14552 -r 4000000 -m onboard -o 14553
+mavlink start -x -u 14553 -r 4000000 -m onboard -o 14552
