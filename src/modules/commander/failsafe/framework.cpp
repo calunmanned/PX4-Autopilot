@@ -350,7 +350,7 @@ bool FailsafeBase::checkFailsafe(int caller_id, bool last_state_failure, bool cu
 
 				if (options.allow_user_takeover == UserTakeoverAllowed::Auto) {
 					if (_param_com_fail_act_t.get() > 0.1f) {
-						if (options.action != Action::Warn && _current_delay == 0) {
+						if (options.action > Action::Warn && _current_delay == 0) {
 							_current_delay = _current_start_delay;
 						}
 
