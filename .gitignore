@@ -108,4 +108,8 @@ src/systemcmds/topic_listener/listener_generated.cpp
 
 # colcon
 log/
+install/
 keys/
+
+# stray local checkout
+PX4-OpticalFlow/
