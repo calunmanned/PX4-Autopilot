@@ -449,6 +449,13 @@ MavlinkReceiver::evaluate_target_ok(int command, int target_system, int target_c
 		target_ok = (target_system == 0) || (target_system == mavlink_system.sysid);
 		break;
 
+	case MAV_CMD_USER_1:
+		/* addressed to the onboard computer, which is not a MAVLink node: publish it so it
+		 * reaches the computer via uXRCE-DDS (/fmu/out/vehicle_command); commander ignores
+		 * it (other target component) and the onboard computer sends the ack */
+		target_ok = (target_system == mavlink_system.sysid) && (target_component == MAV_COMP_ID_ONBOARD_COMPUTER);
+		break;
+
 	default:
 		target_ok = (target_system == mavlink_system.sysid) && ((target_component == mavlink_system.compid)
 				|| (target_component == MAV_COMP_ID_ALL));

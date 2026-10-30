@@ -70,6 +70,11 @@ publications:
   - topic: /fmu/out/vehicle_command_ack
     type: px4_msgs::msg::VehicleCommandAck
 
+  # All commands, incl. MAV_CMD_USER_1 from the ground addressed to the
+  # onboard computer (comp 191); the onboard computer filters for its own
+  - topic: /fmu/out/vehicle_command
+    type: px4_msgs::msg::VehicleCommand
+
   - topic: /fmu/out/vehicle_global_position
     type: px4_msgs::msg::VehicleGlobalPosition
     rate_limit: 50.
@@ -179,6 +184,21 @@ subscriptions:
 
   - topic: /fmu/in/vehicle_command_mode_executor
     type: px4_msgs::msg::VehicleCommand
+
+  # Onboard computer -> ground:
+  # acknowledgement of commands sent to the onboard computer
+  - topic: /fmu/in/vehicle_command_ack
+    type: px4_msgs::msg::VehicleCommandAck
+
+  # data send from the onboard computer to the flight controller for logging
+  - topic: /fmu/in/debug_vect
+    type: px4_msgs::msg::DebugVect
+
+  - topic: /fmu/in/debug_key_value
+    type: px4_msgs::msg::DebugKeyValue
+
+  - topic: /fmu/in/debug_array
+    type: px4_msgs::msg::DebugArray
 
   - topic: /fmu/in/vehicle_thrust_setpoint
     type: px4_msgs::msg::VehicleThrustSetpoint
