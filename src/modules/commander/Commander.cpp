@@ -1553,7 +1553,7 @@ Commander::handle_command(const vehicle_command_s &cmd)
 		/* ignore commands that are handled by other parts of the system */
 		break;
 	
-	case 224: // NAV_CMD_DO_SET_MISSION_CURRENT, TODO: add command types instead of hardcoding numbers	
+	case vehicle_command_s::VEHICLE_CMD_DO_SET_MISSION_CURRENT:	
 		answer_command(cmd, vehicle_command_ack_s::VEHICLE_CMD_RESULT_ACCEPTED);
 		break;
 
